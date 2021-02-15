@@ -1,12 +1,18 @@
 const defaultState = {
-    currentUser: {}
+    searchList: [],
+    savedSongs: [],
 }
 function reducer(state = defaultState, action){
     switch(action.type){
-        case "SET_USER":
+        case "SET_SEARCHLIST":
             return {
                 ...state,
-                currentUser: action.payload
+                searchList: action.payload
+            }
+        case "SAVE_SONG":
+            return {
+                ...state,
+                savedSongs: [...state.savedSongs, action.payload]
             }
         default: return state
     }
