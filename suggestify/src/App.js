@@ -1,10 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import Register from './components/register/Register'
 
 function App() {
   return (
     <div className="App">
-      Suggestify
+      <h1> Suggestify </h1>
+      <Register />
     </div>
   );
 }
