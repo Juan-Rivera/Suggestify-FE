@@ -9,8 +9,7 @@ function Dashboard() {
         <h2>Dashboard</h2>
       <DashNav />
         {/* Profile component */}
-        {/* Search Bar component */}
-        {/* Songs List component */}
+        {/* Search component */}
         {/* Saved Songs Component */}
 
     </div>
