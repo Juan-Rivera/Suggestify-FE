@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 const initialSearch = {
 	artist: "",
@@ -6,6 +7,7 @@ const initialSearch = {
 };
 
 const SearchBar = (props) => {
+	console.log(props)
 	const [search, setSearch] = useState(initialSearch);
 
 	const handleChange = e => {
@@ -17,6 +19,11 @@ const SearchBar = (props) => {
 
 	const handleSubmit = e => {
 		// use redux dispatches here
+		e.preventDefault()
+		axios.post(`https://spotify-3-ds.herokuapp.com/search/${search.artist}/${search.song}`)
+			.then(res => {
+				props.handleSearch(res.data)
+			})
 	};
 	return (
 		<div>

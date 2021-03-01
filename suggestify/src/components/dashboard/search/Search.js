@@ -5,26 +5,34 @@ import SearchList from './SearchList';
 
 // redux stuff
 import { connect } from 'react-redux';
+// actions
+import { setSearchList, saveSong } from '../../../redux/actions/actions';
 
 
-const Search = () => {
+const Search = (props) => {
+    console.log(props)
     return (
         <div className='search'>
             {/* give setList action here */}
-            <SearchBar />
+            <SearchBar handleSearch={props.setSearchList}/>
             {/* give list from state here */}
-            <SearchList />
+            <SearchList handleSave={props.saveSong} searchList={props.searchList}/>
         </div>
     )
 }
 const mapStateToProps = (state) => {
     return {
-        //songs list
+        searchList: state.searchList
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        //add songs(to list) and save songs actions
+        setSearchList: (songs) => {
+            dispatch(setSearchList(songs))
+        } ,
+        saveSong: (song) => {
+            dispatch(saveSong(song))
+        } 
     }
 }
 

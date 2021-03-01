@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DashNav from './DashNav';
+import Search from './search/Search';
 
 function Dashboard() {
 
@@ -10,6 +11,7 @@ function Dashboard() {
       <DashNav />
         {/* Profile component */}
         {/* Search component */}
+      <Search />
         {/* Saved Songs Component */}
 
     </div>
