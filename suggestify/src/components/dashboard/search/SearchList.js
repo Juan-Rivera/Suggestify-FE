@@ -1,17 +1,19 @@
 import React from "react";
-import Song from "./song";
+import Song from "./Song";
 
-import "./songcards.css";
 
-const SongsList = props => {
+const SongsList = (props) => {
+	const { searchList } = props;
+	console.log(props)
 	return (
 		<div>
 			<div className="cardContainer">
-				{props.songs.map((song, id) => (
-					<Song key={id} song={song} />
-				))}
+				{searchList !== undefined ? searchList.map((song, id) => (
+					<Song key={id} song={song} handleSave={props.handleSave} />
+				)) : <h3> Search for Suggestions!</h3>}
 			</div>
 		</div>
 	);
 };
+
 export default SongsList;

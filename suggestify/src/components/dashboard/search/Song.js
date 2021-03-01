@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Song = (props) => {
+    console.log(props)
     return (
         <div className='song'>
             <div className='sImg'>
@@ -22,9 +23,10 @@ const Song = (props) => {
                     <p>{props.song.artist}</p>
                 </div>
                 <div>
-                    <button className="saveButton" onClick={() => saveSong(props.song)}>SAVE</button>
+                    <button className="saveButton" onClick={() => props.handleSave(props.song)}>SAVE</button>
                 </div>
             </div>
         </div>
     )
 }
+export default Song;
