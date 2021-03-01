@@ -9,10 +9,14 @@ function reducer(state = defaultState, action){
                 ...state,
                 searchList: action.payload
             }
-        case "SAVE_SONG":
+        case "SET_SAVEDSONGS":
             return {
                 ...state,
-                savedSongs: [...state.savedSongs, action.payload]
+                savedSongs: action.payload
+            }
+        case "SAVE_SONG":
+            return {
+                //axios call to post saved song to backend for specific user
             }
         default: return state
     }
