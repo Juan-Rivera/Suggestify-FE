@@ -1,6 +1,14 @@
+import axios from 'axios';
+
 const defaultState = {
+    user: {
+        id: 0,
+        name: '',
+        username: ''
+    },
     searchList: [],
     savedSongs: [],
+    songSavedList: [],
 }
 function reducer(state = defaultState, action){
     switch(action.type){
@@ -9,10 +17,15 @@ function reducer(state = defaultState, action){
                 ...state,
                 searchList: action.payload
             }
-        case "SAVE_SONG":
+        case "SET_SAVEDSONGS":
             return {
                 ...state,
-                savedSongs: [...state.savedSongs, action.payload]
+                savedSongs: action.payload
+            }
+        case "SONG_SAVED":
+            return {
+                ...state,
+                songSavedList: action.payload
             }
         default: return state
     }

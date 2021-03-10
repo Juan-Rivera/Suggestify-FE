@@ -16,7 +16,7 @@ const Search = (props) => {
             {/* give setList action here */}
             <SearchBar handleSearch={props.setSearchList}/>
             {/* give list from state here */}
-            <SearchList handleSave={props.saveSong} searchList={props.searchList}/>
+            <SearchList handleSave={saveSong} searchList={props.searchList}/>
         </div>
     )
 }
@@ -30,9 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         setSearchList: (songs) => {
             dispatch(setSearchList(songs))
         } ,
-        saveSong: (song) => {
-            dispatch(saveSong(song))
-        } 
+        
     }
 }
 
