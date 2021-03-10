@@ -1,4 +1,9 @@
 const defaultState = {
+    user: {
+        id: 0,
+        name: '',
+        username: ''
+    },
     searchList: [],
     savedSongs: [],
 }

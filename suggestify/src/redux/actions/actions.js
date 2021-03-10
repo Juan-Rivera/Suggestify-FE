@@ -11,3 +11,10 @@ export const saveSong = (song) => {
         payload: song
     }
 }
+
+export const setSaveList = (songs) => {
+    return {
+        type: 'SET_SAVELIST',
+        payload: songs
+    }
+}
