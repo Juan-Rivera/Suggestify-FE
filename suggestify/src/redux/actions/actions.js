@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const setSearchList = (songs) => {
     return {
         type: 'SET_SEARCHLIST',
@@ -5,9 +7,21 @@ export const setSearchList = (songs) => {
     }
 }
 
-export const saveSong = (song) => {
+export const saveSong = ({song, id}) => {
+    return (dispatch) => {
+      return axios.post(`https://suggestify-backend.herokuapp.com/api/songs/save/${id}`, song)
+        .then(res => {
+          dispatch(songSaved(res.data))
+        })
+        .catch(error => {
+          throw(error);
+        });
+    };
+  };
+
+export const songSaved = (song) => {
     return {
-        type: 'SAVE_SONG',
+        type: 'SONG_SAVED',
         payload: song
     }
 }

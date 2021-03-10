@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const defaultState = {
     user: {
         id: 0,
@@ -6,6 +8,7 @@ const defaultState = {
     },
     searchList: [],
     savedSongs: [],
+    songSavedList: [],
 }
 function reducer(state = defaultState, action){
     switch(action.type){
@@ -19,9 +22,10 @@ function reducer(state = defaultState, action){
                 ...state,
                 savedSongs: action.payload
             }
-        case "SAVE_SONG":
+        case "SONG_SAVED":
             return {
-                //axios call to post saved song to backend for specific user
+                ...state,
+                songSavedList: action.payload
             }
         default: return state
     }
