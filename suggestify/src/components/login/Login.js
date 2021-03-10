@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import * as yup from 'yup';
 import { initialLogin, initialError, formSchema } from './InitialLogin'
 
@@ -50,12 +51,24 @@ const Login = () => {
         })
     }
     const submitHandler = (e) => {
-        e.preventDefault()
-        // axios post will be here
+        e.preventDefault();
+        const newLogin = {
+            username: login.username,
+            password: login.password
+        }
+        console.log(newLogin)
+        axios
+            .post('https://suggestify-backend.herokuapp.com/api/auth/login', newLogin)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log({err})
+            })
 
     }
     return (
-        <div className='register'>
+        <div className='login'>
             <form className='log-form'>
                 <h2>Log In to Your Account</h2>
 

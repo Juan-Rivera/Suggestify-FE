@@ -30,7 +30,7 @@ export const formSchema = yup.object().shape({
         .min(6, "Password must include 6 characters or more")
         .required("Password is required"),
     // for some reason confirmPassword not working, will revisit this later //
-    confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('password'), null], 'Passwords must match')
+    // confirmPassword: yup
+    //     .string()
+    //     .oneOf([yup.ref('password'), null], 'Passwords must match')
 })
