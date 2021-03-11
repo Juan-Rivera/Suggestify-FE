@@ -5,33 +5,25 @@ import SearchList from './SearchList';
 
 // redux stuff
 import { connect } from 'react-redux';
-// actions
-import { setSearchList, saveSong } from '../../../redux/actions/actions';
+import { fetchSongs } from '../../../store/actions/SLActions';
+import { addSong } from '../../../store/actions/SSActions';
 
 
 const Search = (props) => {
-    console.log(props)
+    
     return (
         <div className='search'>
             {/* give setList action here */}
-            <SearchBar handleSearch={props.setSearchList}/>
+            <SearchBar handleSearch={props.fetchSongs}/>
             {/* give list from state here */}
-            <SearchList handleSave={saveSong} searchList={props.searchList}/>
+            <SearchList searchList={props.searchList} handleSave={props.addSong}/>
         </div>
     )
 }
 const mapStateToProps = (state) => {
     return {
-        searchList: state.searchList
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setSearchList: (songs) => {
-            dispatch(setSearchList(songs))
-        } ,
-        
+        searchList: state.SLreducer.searchList
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Search)
+export default connect(mapStateToProps, {fetchSongs, addSong}) (Search)

@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 const Song = (props) => {
-    console.log(props)
+    const { song } = props;
+    console.log(song)
     return (
         <div className='song'>
             <div className='sImg'>
@@ -23,7 +25,7 @@ const Song = (props) => {
                     <p>{props.song.artist}</p>
                 </div>
                 <div>
-                    <button className="saveButton" onClick={() => props.handleSave(props.song)}>SAVE</button>
+                    <button className="saveButton" onClick={() => props.handleSave(song, localStorage.getItem('id'))}>SAVE</button>
                 </div>
             </div>
         </div>

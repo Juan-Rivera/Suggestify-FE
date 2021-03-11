@@ -1,37 +1,26 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 
 import SavedList from './SavedList'
 
 import { connect } from 'react-redux';
-import { setSaveList } from '../../../redux/actions/actions';
+import { fetchSongs, removeSong } from '../../../store/actions/SSActions';
+
 
 const SavedSongs = (props) => {
     useEffect(() => {
         //axios call to get users saved songs from backend, will then set saved songs 
-        axios
-            .get(`https://suggestify-backend.herokuapp.com/api/songs/save/${props.user.id}`)
-            .then(res => {
-                props.setSaveList(res.data)
-            })
-    })
+        props.fetchSongs(localStorage.getItem('id'))
+    }, [])
     return(
         <div className='saved-songs'>
-            <SavedList savedSongs={props.savedSongs}/>
+            <SavedList savedSongs={props.savedSongs} removeSong={props.removeSong}/>
         </div>
     )
 }
 const mapStateToProps = (state) => {
     return {
-        savedSongs: state.savedSongs,
-        user: state.user
+        savedSongs: state.SSreducer.savedSongs,
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setSaveList: (songs) => {
-            dispatch(setSaveList(songs))
-        }
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps) (SavedSongs);
+
+export default connect(mapStateToProps, { fetchSongs, removeSong }) (SavedSongs);

@@ -9,7 +9,7 @@ const SongsList = (props) => {
 		<div>
 			<div className="cardContainer">
 				{searchList !== undefined ? searchList.map((song, id) => (
-					<Song key={id} song={song} handleSave={props.handleSave} />
+					<Song key={id} song={song} handleSave={props.handleSave}/>
 				)) : <h3> Search for Suggestions!</h3>}
 			</div>
 		</div>

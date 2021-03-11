@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import { initialLogin, initialError, formSchema } from './InitialLogin'
 
+
 const Login = () => {
+
+    const { push } = useHistory();
     const [login, setLogin] = useState(initialLogin)
     const [errors, setErrors] = useState(initialError)
     const [disabled, setDisabled] = useState(true);
@@ -56,11 +60,12 @@ const Login = () => {
             username: login.username,
             password: login.password
         }
-        console.log(newLogin)
         axios
             .post('https://suggestify-backend.herokuapp.com/api/auth/login', newLogin)
             .then(res => {
-                console.log(res)
+                localStorage.setItem('token', JSON.stringify(res.data.token));
+                localStorage.setItem('id', JSON.stringify(res.data.data.id))
+                push('/dashboard')
             })
             .catch(err => {
                 console.log({err})

@@ -1,21 +1,25 @@
 import React from 'react';
+import PrivateRoute from '../../utils/PrivateRoute';
 
 import DashNav from './DashNav';
 import Search from './search/Search';
 import SavedSongs from './savedSongs/SavedSongs'
 
-function Dashboard() {
-
+const Dashboard = () => {
   return (
     <div className="dashboard">
         <h2>Dashboard</h2>
       <DashNav />
         {/* Profile component */}
-        {/* <Search /> */}
-        <SavedSongs />
-        {/* Saved Songs Component */}
+        <PrivateRoute path='/dashboard/search' >
+          <Search />
+        </PrivateRoute>
+        <PrivateRoute path='/dashboard/savedSongs' >
+          <SavedSongs />  
+        </PrivateRoute>
 
     </div>
   )
 }
-export default Dashboard;
+
+export default Dashboard

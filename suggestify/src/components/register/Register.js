@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import { initialRegister, initialError, formSchema } from './InitialRegister'
 
 const Register = () => {
+    const { push } = useHistory();
     const [register, setRegister] = useState(initialRegister)
     const [errors, setErrors] = useState(initialError)
     const [disabled, setDisabled] = useState(true);
@@ -61,6 +63,7 @@ const Register = () => {
             .post('https://suggestify-backend.herokuapp.com/api/auth/register', newRegister)
             .then(res => {
                 console.log(res)
+                push('/login')
             })
             .catch(err => {
                 console.log({err})
