@@ -4,7 +4,7 @@ const DashNav = props => {
 
     return (
         <nav className="dashNav">
-            <a>My Profile</a>
+            <a href={`/dashboard/profile/${localStorage.getItem('id')}`}>My Profile</a>
             <span>|</span>
             <a href='/dashboard/search'>Search Songs</a>
             <span>|</span>

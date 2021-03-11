@@ -14,11 +14,9 @@ export const fetchProfile = (id) => {
       axiosWithAuth()
         .get(`api/profiles/${id}`)
         .then((res) => {
-          // console.log("GOT POST DATA", res.data);
           dispatch({ type: FETCH_PROFILE_SUCCESS, payload: res.data });
         })
         .catch((err) => {
-          // console.log(err);
           dispatch({
             type: FETCH_PROFILE_FAILURE,
             payload: err,
@@ -33,8 +31,8 @@ export const fetchProfile = (id) => {
       axiosWithAuth()
         .put(`api/profiles/${id}`, update)
         .then((res) => {
-          // console.log(res.data);
           dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: res.data });
+          window.location.href = `/dashboard/profile/${id}`;
         })
         .catch((err) => {
           console.log(err);
