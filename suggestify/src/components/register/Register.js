@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import { initialRegister, initialError, formSchema } from './InitialRegister'
 
 const Register = () => {
+    const { push } = useHistory();
     const [register, setRegister] = useState(initialRegister)
     const [errors, setErrors] = useState(initialError)
     const [disabled, setDisabled] = useState(true);
@@ -16,7 +19,7 @@ const Register = () => {
                 }
             })
             .catch(err => {
-
+                console.log(err)
             })
     })
 
@@ -50,9 +53,21 @@ const Register = () => {
         })
     }
     const submitHandler = (e) => {
-        e.preventDefault()
-        // axios post will be here
-
+        e.preventDefault();
+        const newRegister = {
+            name: `${register.first_name} ${register.last_name}`,
+            username: register.username,
+            password: register.password
+        }
+        axios
+            .post('https://suggestify-backend.herokuapp.com/api/auth/register', newRegister)
+            .then(res => {
+                console.log(res)
+                push('/login')
+            })
+            .catch(err => {
+                console.log({err})
+            })
     }
     return (
         <div className='register'>
@@ -102,7 +117,7 @@ const Register = () => {
                     value={register.password}
                     onChange={changeHandler}
                 />
-                <div className='error'>
+                {/* <div className='error'>
                     <p>{errors.confirmPassword}</p>
                 </div>
                 <input
@@ -111,7 +126,7 @@ const Register = () => {
                     placeholder='Confirm Password'
                     value={register.confirmPassword}
                     onChange={changeHandler}
-                />
+                /> */}
                 <br />
                 <button onClick={submitHandler} disabled={disabled}>SIGN UP</button>
             </form>

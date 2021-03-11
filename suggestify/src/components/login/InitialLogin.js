@@ -16,6 +16,5 @@ export const formSchema = yup.object().shape({
         .required("Username is required"),
     password: yup
         .string()
-        .min(6, "Password must include 6 characters or more")
         .required("Password is required"),
 })
